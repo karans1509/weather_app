@@ -1,17 +1,4 @@
-	// let url = "https://api.github.com/users/" + 'karans1509';
 
-	// fetch(`${url}`)
-	// .then(function(res) { return res.json()
-	//  })
-	// .then( function(json) { 
-
-	// 	console.log(json);
-	//     let github = json.html_url
-	// 	const heading2 = document.createElement('h2');
-	// 	heading2.textContent = github;
-	// 	const show = document.getElementById('display');
-	// 	show.appendChild(heading2)
-	// })
 let lat = 0 ;
 let lon = 0 ;
 let max_temp = 0;
@@ -19,7 +6,6 @@ let min_temp = 0
 let humidity =0;
 let wind_speed = 0;
 let description = '';
-let pressure = 0;
 let image = ''
 
 const element = document.getElementById('weather');
@@ -28,35 +14,27 @@ element.addEventListener('submit', (e) => {
 
     e.preventDefault()
     
-    console.clear()
+    
     const add = document.getElementById('display')
     add.innerHTML=""
 
 	let city = document.getElementById('city').value
-	console.log(city)
+
 	let country = document.getElementById('country').value
-	console.log(country)
 
 	const url1 = `http://locationiq.org/v1/search.php?key=e71ab26214a4af01969d&format=json&city=${city}&country=${country}`
-
-	console.log(url1)
 
 	fetch(`${url1}`)
 	.then(function(res) { return res.json() })
 	.then(function(json)  {
-		console.log("Geo Location");
-		console.log(json[0]);
-        
 	    lat = json[0].lat;
 	    let latt = document.createElement('h4')
 	    latt.textContent = lat
-	    console.log(lat);
-
+	   
 	    lon = json[0].lon;
 	    let long = document.createElement('h4')
         long.textContent = lon  
-	    console.log(lon)
-
+	   
 	    const add = document.getElementById('display')
 	    add.innerHTML = ''
 	    // add.appendChild(latt)
@@ -67,8 +45,7 @@ element.addEventListener('submit', (e) => {
 	    fetch(`${url2}lat=${lat}&lon=${lon}&APPID=1c00ab5be86159c68e9f50d2a84afca8`)
 	   .then(function(resp) { return resp.json( )})
 	   .then( function(json) {
-		console.log("Weather data")
-		console.log(json);
+		
 
         for(let i=0;i<6;i++)
        {
@@ -115,7 +92,6 @@ element.addEventListener('submit', (e) => {
         add.appendChild(desc)
         add.appendChild(maxtemp)
         add.appendChild(mintemp)
-        //add.appendChild(press)
         add.appendChild(humid)
         add.appendChild(speed)
        }
